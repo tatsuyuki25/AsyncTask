@@ -1,50 +1,85 @@
 package tatsuyuki.asynctask
 
+import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.locks.Lock
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.thread
 
 /**
- *
- * Created by tatsuyuki on 2016/4/1.
+ * C# style async & await
+ * @author tatsuyuki
+ * @since 1.1.0
+ * @see async
+ * @see await
  */
-
-
 class Task<T> {
-    internal  val LOCK: Lock = ReentrantLock()
-    internal  var isLocked: Boolean = false
-    var result: ((T) -> Unit) = {}
-    fun result(result: ((T) -> Unit)) {
+
+    internal val LOCK: Lock = ReentrantLock()
+    internal var isLocked: Boolean = false
+    internal var result: ((T?) -> Unit)? = null
+    internal var e: Exception? = null
+    internal var data: T? = null
+    internal val isSendResult: AtomicBoolean = AtomicBoolean(false)
+    /**
+     * Set callback, run callback on new thread
+     * @param result the callback
+     */
+    fun result(result: ((T?) -> Unit)) {
         this.result = result
+        if ((e != null || data != null) && !isSendResult.get()) {
+            isSendResult.set(true)
+            thread {
+                result(data)
+            }
+        }
     }
 }
+
+/**
+ * run method on async
+ * @param body method body
+ * @return Task<T>, using task.result{} set callback
+ * @see await
+ */
 fun <T> async(body: () -> T): Task<T> {
     val task: Task<T> = Task()
     thread {
         task.LOCK.lock()
         task.isLocked = true
         try {
-            var data = body()
-            task.result(data)
+            task.data = body()
+        } catch(e: Exception) {
+            task.e = e
         } finally {
             task.LOCK.unlock()
         }
+        if (!task.isSendResult.get() && task.result != null) {
+            task.isSendResult.set(true)
+            task.result!!(task.data)
+        }
+
     }
     return task
 }
 
-fun <T> await(body: () -> T): Any? {
+/**
+ * Async method to block
+ * @param body async method
+ * @return async method return value, return on call await thread
+ */
+fun <T> await(body: () -> Task<T>): Any? {
     var task = body()
     var result: Any? = null
-    if(task is Task<*>) {
-        task.result {
-            result = it
-        }
-        while(!task.isLocked) {
-            Thread.sleep(1)
-        }
-        task.LOCK.lock()
-        task.LOCK.unlock()
+    task.result {
+        result = it
+    }
+    while (!task.isLocked) {
+        Thread.sleep(1)
+    }
+    task.LOCK.lock()
+    task.LOCK.unlock()
+    if (task.e != null) {
+        throw Exception(task.e)
     }
     return result
 }
