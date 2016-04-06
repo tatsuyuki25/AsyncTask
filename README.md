@@ -44,7 +44,7 @@ await後發生Exception會直接在執行的Thread上拋出Exception。
 
 # License
 ```
-Copyright 2015 tatsuyuki
+Copyright 2016 tatsuyuki
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
