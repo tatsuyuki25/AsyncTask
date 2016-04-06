@@ -58,7 +58,7 @@ bintray {
 
     pkg {
         repo = "maven"
-        name = "AsyncTask"    //发布到JCenter上的项目名字
+        name = "AsyncTask"
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ["Apache-2.0"]

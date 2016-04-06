@@ -67,9 +67,9 @@ fun <T> async(body: () -> T): Task<T> {
  * @param body async method
  * @return async method return value, return on call await thread
  */
-fun <T> await(body: () -> Task<T>): Any? {
+fun <T> await(body: () -> Task<T>): T? {
     var task = body()
-    var result: Any? = null
+    var result: T? = null
     task.result {
         result = it
     }
