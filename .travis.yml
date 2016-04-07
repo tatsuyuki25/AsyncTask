@@ -1,6 +1,6 @@
 language: java
 
-php:
+java:
   - 1.6
 
 install:
