@@ -8,7 +8,7 @@ import kotlin.concurrent.thread
 /**
  * C# style async & await
  * @author tatsuyuki
- * @since 1.1.5
+ * @since 1.1.6
  * @see async
  * @see await
  */
