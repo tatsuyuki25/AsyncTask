@@ -1,5 +1,5 @@
 group 'tatsuyuki.asynctask'
-version '1.1.6'
+version '1.1.8'
 
 buildscript {
     repositories {
@@ -63,9 +63,9 @@ bintray {
         licenses = ["Apache-2.0"]
         publish = true
         version {
-            name = '1.1.6'
-            desc = 'await return T'
-            vcsTag = '1.1.6'
+            name = '1.1.8'
+            desc = 'fix await sometimes return null'
+            vcsTag = 'master'
             attributes = ['AsyncTask': 'tatsuyuki25:tatsuyuki.asynctask:AsyncTask']
         }
     }

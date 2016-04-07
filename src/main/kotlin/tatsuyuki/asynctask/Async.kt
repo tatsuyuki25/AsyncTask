@@ -70,10 +70,12 @@ fun <T> async(body: () -> T): Task<T> {
 fun <T> await(body: () -> Task<T>): T? {
     var task = body()
     var result: T? = null
+    var isGetResult = false
     task.result {
         result = it
+        isGetResult = true
     }
-    while (!task.isLocked) {
+    while (!isGetResult) {
         Thread.sleep(1)
     }
     task.LOCK.lock()
