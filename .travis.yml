@@ -1,0 +1,16 @@
+language: java
+
+php:
+  - 1.6
+
+install:
+  - composer install --prefer-dist --no-dev --optimize-autoloader --quiet
+
+notifications:
+  email:
+    recipients:
+      - jordandes@gmail.com
+    on_success: always
+    on_failure: always
+
+script: phpunit -c javaunit.xml --coverage-text
