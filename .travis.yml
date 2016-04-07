@@ -11,4 +11,5 @@ notifications:
     on_success: always
     on_failure: always
 
-script: phpunit -c javaunit.xml --coverage-text
+script:
+  "gradlew check -i"
