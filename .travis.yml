@@ -2,7 +2,8 @@ language: java
 
 java:
   - 1.6
-
+install:
+ - chmod +x gradlew
 
 notifications:
   email:
