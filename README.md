@@ -1,5 +1,4 @@
 [![GitHub version](https://badge.fury.io/gh/tatsuyuki25%2FAsyncTask.svg)](https://badge.fury.io/gh/tatsuyuki25%2FAsyncTask)
-[![Code Climate](https://codeclimate.com/github/tatsuyuki25/AsyncTask/badges/gpa.svg)](https://codeclimate.com/github/tatsuyuki25/AsyncTask)
 [![Build Status](https://travis-ci.org/tatsuyuki25/AsyncTask.svg?branch=master)](https://travis-ci.org/tatsuyuki25/AsyncTask)
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
 # AsyncTask
