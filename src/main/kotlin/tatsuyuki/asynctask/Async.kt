@@ -15,7 +15,6 @@ import kotlin.concurrent.thread
 class Task<T> {
 
     internal val LOCK: Lock = ReentrantLock()
-    internal var isLocked: Boolean = false
     internal var result: ((T?) -> Unit)? = null
     internal var e: Exception? = null
     internal var data: T? = null
@@ -45,7 +44,6 @@ fun <T> async(body: () -> T): Task<T> {
     val task: Task<T> = Task()
     thread {
         task.LOCK.lock()
-        task.isLocked = true
         try {
             task.data = body()
         } catch(e: Exception) {

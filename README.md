@@ -1,3 +1,5 @@
+[![GitHub version](https://badge.fury.io/gh/tatsuyuki25%2FAsyncTask.svg)](https://badge.fury.io/gh/tatsuyuki25%2FAsyncTask)
+[![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
 # AsyncTask
 C# style async, await
 
