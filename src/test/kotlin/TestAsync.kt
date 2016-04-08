@@ -23,13 +23,13 @@ class TestAsync {
     fun asyncTest() {
         for(i in 1..100) {
             var data: String? = null
-            var isGet = false
+            var isGetData = false
             val task = runOnAsync()
             task.result {
                 data = it
-                isGet = true
+                isGetData = true
             }
-            while(!isGet) {
+            while(!isGetData) {
                 Thread.sleep(1)
             }
             Assert.assertNotNull(data)
