@@ -18,6 +18,27 @@ class TestAsync {
             Assert.assertEquals("go", s)
         }
     }
+
+    @Test
+    fun asyncTest() {
+        for(i in 1..100) {
+            var s: String? = null
+            var isGet = false
+            val task = runOnAsync()
+            task.result {
+                s = it
+                isGet = true
+            }
+            while(!isGet) {
+                Thread.sleep(1)
+            }
+            Assert.assertNotNull(s)
+            Assert.assertEquals("go", s)
+
+        }
+
+    }
+
     fun runOnAsync(): Task<String> = async() {
         Thread.sleep(100)
         "go"
