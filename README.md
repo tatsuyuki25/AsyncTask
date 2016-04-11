@@ -5,12 +5,13 @@
 C# style async, await
 
 # simple
+In async method should be add 'return@async'
 ## Method
 ```kotlin
     fun runOnAsync(): Task<String> {
         return async() {
             Thread.sleep(2000)
-            "OnAsync"
+            return@async "OnAsync"
         }
 
     }
