@@ -3,6 +3,7 @@ import org.junit.Test
 import tatsuyuki.asynctask.Task
 import tatsuyuki.asynctask.async
 import tatsuyuki.asynctask.await
+import kotlin.system.measureTimeMillis
 
 /**
  * by test
@@ -36,6 +37,16 @@ class TestAsync {
             Assert.assertEquals("go", data)
 
         }
+    }
+
+    @Test
+    fun awaitTest() {
+        val time = measureTimeMillis {
+            val s = await { runOnAsync() }
+            Assert.assertNotNull(s)
+            Assert.assertEquals("go", s)
+        }
+        Assert.assertTrue(time >= 100)
     }
 
 
