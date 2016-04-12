@@ -41,6 +41,6 @@ class TestAsync {
 
     fun runOnAsync(): Task<String> = async() {
         Thread.sleep(100)
-        "go"
+        return@async "go"
     }
 }

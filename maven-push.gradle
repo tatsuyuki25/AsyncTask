@@ -1,0 +1,59 @@
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('uploadMaven').newDataInputStream())
+
+afterEvaluate { project ->
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+                pom.groupId = properties.getProperty('GROUP')
+                pom.artifactId = properties.getProperty('POM_ARTIFACT_ID')
+                pom.version = properties.getProperty('VERSION_NAME')
+
+                repository(url: properties.getProperty('RELEASE_REPOSITORY_URL')) {
+                    authentication(userName: properties.getProperty('NEXUS_USERNAME'), password: properties.getProperty('NEXUS_PASSWORD'))
+                }
+                snapshotRepository(url: properties.getProperty('SNAPSHOT_REPOSITORY_URL')) {
+                    authentication(userName: properties.getProperty('NEXUS_USERNAME'), password: properties.getProperty('NEXUS_PASSWORD'))
+                }
+
+                pom.project {
+                    name properties.getProperty('POM_NAME')
+                    packaging properties.getProperty('POM_PACKAGING')
+                    description properties.getProperty('POM_DESCRIPTION')
+                    url properties.getProperty('POM_URL')
+
+                    scm {
+                        url 'https://github.com/tatsuyuki25/AsyncTask'
+                        connection properties.getProperty('POM_SCM_CONNECTION')
+                        developerConnection properties.getProperty('POM_SCM_DEV_CONNECTION')
+                    }
+
+                    licenses {
+                        license {
+                            name properties.getProperty('POM_LICENCE_NAME')
+                            url properties.getProperty('POM_LICENCE_URL')
+                            distribution properties.getProperty('POM_LICENCE_DIST')
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id properties.getProperty('POM_DEVELOPER_ID')
+                            name properties.getProperty('POM_DEVELOPER_NAME')
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    signing {
+        required { gradle.taskGraph.hasTask("uploadArchives") }
+        sign configurations.archives
+    }
+}
