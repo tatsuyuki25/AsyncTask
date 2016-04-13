@@ -5,6 +5,17 @@
 C# style async, await
 
 # simple
+
+## jcenter
+```
+compile 'tatsuyuki.asynctask:AsyncTask:1.1.9'
+```
+
+## mavenCentral
+```
+compile 'com.github.tatsuyuki25:AsyncTask:1.1.9'
+```
+
 In async method should be add 'return@async'
 ## Method
 ```kotlin

@@ -8,7 +8,7 @@ import kotlin.concurrent.thread
 /**
  * C# style async & await
  * @author tatsuyuki
- * @since 1.1.6
+ * @since 1.1.10
  * @see async
  * @see await
  */
@@ -64,6 +64,7 @@ fun <T> async(body: () -> T): Task<T> {
  * Async method to block
  * @param body async method
  * @return async method return value, return on call await thread
+ * @see async
  */
 fun <T> await(body: () -> Task<T>): T? {
     var task = body()
