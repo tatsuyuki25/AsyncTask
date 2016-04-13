@@ -1,4 +1,5 @@
-[![GitHub version](https://badge.fury.io/gh/tatsuyuki25%2FAsyncTask.svg)](https://badge.fury.io/gh/tatsuyuki25%2FAsyncTask)
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.tatsuyuki25/AsyncTask.svg)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22AsyncTask%22)
+[![Bintray](https://img.shields.io/bintray/v/tatsuyuki25/maven/AsyncTask.svg)](https://bintray.com/tatsuyuki25/maven/AsyncTask/view)
 [![Build Status](https://travis-ci.org/tatsuyuki25/AsyncTask.svg?branch=master)](https://travis-ci.org/tatsuyuki25/AsyncTask)
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
 # AsyncTask

@@ -42,9 +42,9 @@ class TestAsync {
     @Test
     fun awaitTest() {
         val time = measureTimeMillis {
-            val s = await { runOnAsync() }
-            Assert.assertNotNull(s)
-            Assert.assertEquals("go", s)
+            val data = await { runOnAsync() }
+            Assert.assertNotNull(data)
+            Assert.assertEquals("go", data)
         }
         Assert.assertTrue(time >= 100)
     }

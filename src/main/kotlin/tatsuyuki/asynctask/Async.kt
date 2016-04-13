@@ -19,6 +19,7 @@ class Task<T> {
     internal var e: Exception? = null
     internal var data: T? = null
     internal val isSendResult: AtomicBoolean = AtomicBoolean(false)
+
     /**
      * Set callback, run callback on new thread
      * @param result the callback
