@@ -1,3 +1,4 @@
+
 import org.junit.Assert
 import org.junit.Test
 import tatsuyuki.asynctask.Task
@@ -49,9 +50,37 @@ class TestAsync {
         Assert.assertTrue(time >= 100)
     }
 
+    @Test
+    fun asyncResultTest() {
+        val task = runOnAsync()
+        Thread.sleep(200)
+        task.result { Assert.assertEquals("go", it) }
+    }
 
     fun runOnAsync(): Task<String> = async() {
         Thread.sleep(100)
+
         return@async "go"
+    }
+
+    @Test
+    fun asyncExceptionTest() {
+        val task = runAsyncException()
+        Thread.sleep(10)
+        task.result { Assert.assertNull(it) }
+    }
+
+    @Test
+    fun awaitExceptionTest() {
+        try {
+            await { runAsyncException() }
+        } catch(e: Exception) {
+            Assert.assertEquals("java.lang.RuntimeException: async error", e.message)
+        }
+    }
+
+    fun runAsyncException(): Task<String> = async() {
+        throw RuntimeException("async error")
+        return@async  ""
     }
 }
