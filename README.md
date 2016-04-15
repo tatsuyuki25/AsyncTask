@@ -9,12 +9,16 @@ C# style async, await
 
 ## jcenter
 ```
-compile 'tatsuyuki.asynctask:AsyncTask:1.1.9'
+compile 'tatsuyuki.asynctask:AsyncTask:1.2.0'
+```
+or
+```
+compile 'com.github.tatsuyuki25:AsyncTask:1.2.0'
 ```
 
 ## mavenCentral
 ```
-compile 'com.github.tatsuyuki25:AsyncTask:1.1.9'
+compile 'com.github.tatsuyuki25:AsyncTask:1.2.0'
 ```
 
 In async method should be add 'return@async'
