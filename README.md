@@ -3,11 +3,11 @@
 [![Build Status](https://travis-ci.org/tatsuyuki25/AsyncTask.svg?branch=master)](https://travis-ci.org/tatsuyuki25/AsyncTask)
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
 # AsyncTask
-C# style async, await
+async / await for Kotlin
 
 # simple
 
-## jcenter
+## JCenter
 ```
 compile 'tatsuyuki.asynctask:AsyncTask:1.2.0'
 ```

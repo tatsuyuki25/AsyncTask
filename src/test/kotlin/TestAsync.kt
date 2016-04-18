@@ -81,7 +81,6 @@ class TestAsync {
 
     fun runAsyncException(): Task<String> = async() {
         throw RuntimeException("async error")
-
         return@async  ""
     }
 }
