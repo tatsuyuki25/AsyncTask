@@ -61,24 +61,23 @@ class Task<T> {
 
     /**
      * Async method to block
-     * @param task the Task
      * @return async method return value, return on call await thread
      * @see async
      */
-    fun await(task: Task<T>): T? {
+    fun await(): T? {
         var result: T? = null
         var isGetResult = false
-        task.result {
+        this.result {
             result = it
             isGetResult = true
         }
         while (!isGetResult) {
             Thread.sleep(1)
         }
-        task.LOCK.lock()
-        task.LOCK.unlock()
-        if (task.e != null) {
-            throw Exception(task.e)
+        this.LOCK.lock()
+        this.LOCK.unlock()
+        if (this.e != null) {
+            throw Exception(this.e)
         }
         return result
     }
@@ -103,7 +102,7 @@ fun <T> async(body: () -> T): Task<T> {
  */
 fun <T> await(body: () -> Task<T>): T? {
     var task = body()
-    return task.await(task)
+    return task.await()
 }
 
 
