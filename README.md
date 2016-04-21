@@ -9,16 +9,16 @@ async / await for Kotlin
 
 ## JCenter
 ```
-compile 'tatsuyuki.asynctask:AsyncTask:1.2.0'
+compile 'tatsuyuki.asynctask:AsyncTask:1.2.1'
 ```
 or
 ```
-compile 'com.github.tatsuyuki25:AsyncTask:1.2.0'
+compile 'com.github.tatsuyuki25:AsyncTask:1.2.1'
 ```
 
 ## mavenCentral
 ```
-compile 'com.github.tatsuyuki25:AsyncTask:1.2.0'
+compile 'com.github.tatsuyuki25:AsyncTask:1.2.1'
 ```
 
 In async method should be add 'return@async'
