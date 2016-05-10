@@ -2,8 +2,9 @@ apply plugin: 'maven'
 apply plugin: 'signing'
 
 Properties properties = new Properties()
-properties.load(project.rootProject.file('uploadMaven').newDataInputStream())
-
+try {
+    properties.load(project.rootProject.file('uploadMaven').newDataInputStream())
+} catch (FileNotFoundException ignore) {}
 afterEvaluate { project ->
     uploadArchives {
         repositories {
